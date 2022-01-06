@@ -1,0 +1,12 @@
+= Demo repo
+:title: My Demo Repo
+:author: Carl C.
+
+== My Demo repo
+Taking an opportunity to create +asciidoc+.
+
+[source,python]
+---------------
+import os, sys, json
+print(os.listdir("."))
+---------------
