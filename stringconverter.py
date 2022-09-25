@@ -1,4 +1,7 @@
 #!/usr/bin/env python
+# Use ``%run`` to run from inside a jupyter console.
+# This is similar to how IDLE runs a script, as it keeps the variables
+# inside the IPython session for further examination.
 
 """A string converter that converts a string into various other formats"""
 
@@ -16,18 +19,35 @@ class StringConverter(UserString):
             l.append(bin(ord(letter)))
         return l
 
-    def print_self(self):
+    # IMPORTANT: Can I recurse methods here?
+
+    def convert_to_ordinal(self):
+        l = []
+        for letter in self.data:
+            l.append(ord(letter))
+        return l
+
+    def conv_to_ord(self):
+        '''Convert string to list of ordinals using list comprehension.'''
+        l = [ord(x) for x in self.data]
+        return l
+
+    def conv_to_markdown(self):
+        '''Take the string and convert the markdown to html'''
+        raise NotImplementedError('This function is not implemented yet')
+
+    def _print_self(self):
         '''Simply prints self'''
         print(self)
 
-    def print_dir(self):
+    def _print_dir(self):
         '''Prints dir(self)'''
         print(dir(self))
 
 if __name__ == '__main__':
+    # TODO: Cleanup
+    
+    print(f'Running {__file__}')
     sc = StringConverter('my new string\n')
-    sc_binary_list = sc.convert_to_binary()
-    print_string_list(sc_binary_list)
-    sc2 = StringConverter('hi')
-    sc2_binary_list = sc2.convert_to_binary()
+    sc.conv_to_markdown()
     
