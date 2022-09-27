@@ -6,6 +6,8 @@
 """A string converter that converts a string into various other formats"""
 
 from collections import UserString
+from typing import AnyStr, Text
+
 from stringlistprinter import print_string_list
 
 class StringConverter(UserString):
@@ -14,9 +16,7 @@ class StringConverter(UserString):
     
     def convert_to_binary(self):
         '''Converts self to a list of binary numbers using the bin() method'''
-        l = []
-        for letter in self.data:
-            l.append(bin(ord(letter)))
+        l = [bin(ord(letter)) for letter in self.data]
         return l
 
     # IMPORTANT: Can I recurse methods here?
@@ -44,10 +44,18 @@ class StringConverter(UserString):
         '''Prints dir(self)'''
         print(dir(self))
 
+
+class NewString(str):
+    '''Most basic string class'''
+    pass
+
 if __name__ == '__main__':
     # TODO: Cleanup
     
     print(f'Running {__file__}')
     sc = StringConverter('my new string\n')
-    sc.conv_to_markdown()
+    #print(sc.convert_to_binary())
+    ns = NewString("hi there")
+    print(dir(ns))
+    #sc.conv_to_markdown() # Not implemented yet.
     
